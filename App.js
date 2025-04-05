@@ -1,20 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+import React from 'react'; 
+import { StatusBar } from 'react-native'; 
+import { NavigationContainer } from '@react-navigation/native'; 
+import { SafeAreaProvider } from 'react-native-safe-area-context'; 
+import AppNavigator from './navigation/AppNavigator'; 
+import { AuthProvider } from './context/AuthContext'; 
+// You may need to import font packages if you're using them 
+// import { useFonts } from 'expo-font'; 
+// import AppLoading from 'expo-app-loading'; 
+export default function App() { 
+// If you're using custom fonts, uncomment this block 
+/* 
+const [fontsLoaded] = useFonts({ 
+'Poppins-Regular': require('./assets/fonts/Poppins-Regular.ttf'), 
+'Poppins-Bold': require('./assets/fonts/Poppins-Bold.ttf'), 
+// Add other fonts as needed 
+}); 
+if (!fontsLoaded) { 
+return <AppLoading />; 
+} 
+*/ 
+return ( 
+<SafeAreaProvider> 
+<StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" /> 
+<AuthProvider> 
+<NavigationContainer> 
+<AppNavigator /> 
+</NavigationContainer> 
+</AuthProvider> 
+</SafeAreaProvider> 
+); 
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
